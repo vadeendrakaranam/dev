@@ -8,15 +8,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-  /* --- COLOR PALETTE (Optimized for Mobile/APK) --- */
   :root {
-    --primary-blue: #0056b3; /* Richer Primary */
-    --secondary-blue: #007bff; /* Action Blue */
-    --bg-light: #f5f8fa; /* Light background */
-    --text-dark: #212529; /* High contrast text */
+    --primary-blue: #0056b3;
+    --secondary-blue: #007bff;
+    --bg-light: #f5f8fa;
+    --text-dark: #212529;
     --shadow-color: rgba(0, 0, 0, 0.15);
-    --alert-error: #dc3545; /* Danger Red */
-    --alert-info: #17a2b8; /* Calming Cyan */
+    --alert-error: #dc3545;
+    --alert-info: #17a2b8;
   }
 
   body {
@@ -30,16 +29,15 @@
     flex-direction: column;
   }
 
-  /* --- HEADER (Optimized for Mobile) --- */
   header {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: sticky; /* Sticky header for app feel */
+    position: sticky;
     top: 0;
     z-index: 1000;
     background: linear-gradient(90deg, #004c99, var(--primary-blue));
-    padding: 15px 10px; /* Tighter padding for mobile */
+    padding: 15px 10px;
     color: white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   }
@@ -47,7 +45,7 @@
   header img {
     position: absolute;
     left: 15px;
-    width: 40px; /* Smaller logo */
+    width: 40px;
     height: 40px;
     border-radius: 50%;
     border: 2px solid white;
@@ -55,18 +53,17 @@
 
   header h1 {
     margin: 0;
-    font-size: 22px; /* Smaller title */
+    font-size: 22px;
     font-weight: 700;
     text-align: center;
     letter-spacing: 0.5px;
   }
 
-  /* --- CONTAINER & CARDS (Made Responsive) --- */
   .container {
     padding: 20px 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* Tighter gap for mobile */
+    gap: 15px;
     justify-content: center;
     flex-grow: 1;
   }
@@ -76,19 +73,14 @@
     padding: 18px;
     border-radius: 12px;
     box-shadow: 0 4px 15px var(--shadow-color);
-    flex: 1 1 100%; /* Important: Takes full width on small screens */
-    max-width: 450px; /* Max width for larger devices/landscape */
+    flex: 1 1 100%;
+    max-width: 450px;
     border: 1px solid #e0e6ed;
     transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .card:hover {
-    transform: none; /* Removed hover animation for mobile APK */
-    box-shadow: 0 4px 15px var(--shadow-color);
-  }
-
   .card h2 {
-    font-size: 18px; /* Smaller card titles */
+    font-size: 18px;
     margin-bottom: 12px;
     color: var(--primary-blue);
     font-weight: 700;
@@ -99,7 +91,6 @@
     gap: 8px;
   }
 
-  /* --- ALERT BOX --- */
   .alert {
     padding: 10px;
     margin-bottom: 8px;
@@ -110,14 +101,12 @@
     gap: 3px;
   }
 
-  /* Info Alert */
   .alert.info {
     background: #e9f7fe;
     border-left: 5px solid var(--alert-info);
     color: #005f73;
   }
 
-  /* Emergency Alert */
   .alert.emergency {
     background: #ffebeb;
     border-left: 5px solid var(--alert-error);
@@ -134,10 +123,9 @@
   .alert-time {
     font-size: 11px;
     font-weight: 400;
-    color: #6c757d; /* Muted time color */
+    color: #6c757d;
   }
 
-  /* --- BUTTONS (Optimized for Touch) --- */
   button {
     background: linear-gradient(90deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
     color: white;
@@ -156,20 +144,18 @@
     gap: 8px;
     text-transform: uppercase;
     box-shadow: 0 2px 5px rgba(0, 86, 179, 0.4);
-    -webkit-tap-highlight-color: transparent; /* Essential for mobile touch feel */
+    -webkit-tap-highlight-color: transparent;
   }
 
   button:active {
-    /* Visual feedback on tap */
     background: var(--primary-blue);
     transform: scale(0.98);
     box-shadow: 0 1px 3px rgba(0, 86, 179, 0.6);
   }
 
-  /* --- POPUP (Toast Notification Style) --- */
   #popup {
     position: fixed;
-    bottom: 20px; /* Moved to bottom for mobile notification style */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
@@ -192,7 +178,6 @@
       to { bottom: 20px; opacity: 1; }
   }
 
-  /* --- FOOTER --- */
   footer {
     text-align: center;
     padding: 12px;
@@ -204,14 +189,13 @@
     margin-top: auto;
   }
   
-  /* --- RESPONSIVENESS (Optional: for tablets/landscape) --- */
   @media (min-width: 768px) {
     .container {
       gap: 25px;
       padding: 30px;
     }
     .card {
-      flex: 0 0 calc(50% - 12.5px); /* Two cards per row on larger screens */
+      flex: 0 0 calc(50% - 12.5px);
       max-width: none;
     }
   }
@@ -231,13 +215,13 @@
 <div class="container">
   <div class="card">
     <h2><i class="fas fa-bell"></i> Latest Alerts</h2>
-    <div id="alertsContainer">Loading alerts...</div>
+    <div id="alertsContainer"></div>
   </div>
 
   <div class="card">
     <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
-    <button onclick="sendCommand(7,'1')">Take Medicines</button>
-    <button onclick="sendCommand(8,'1')">Don't Panic</button>
+    <button onclick="showPopup('Take Medicines')">Take Medicines</button>
+    <button onclick="showPopup('Don\'t Panic')">Don't Panic</button>
   </div>
 </div>
 
@@ -248,97 +232,48 @@
 </audio>
 
 <script>
-const channelID="3192972";
-const readAPI="5ICOP2YZHD7H88MS";
-const writeAPI="GE7OG58ETMAV7OT1";
+// Sample simulated alerts
+const sampleAlerts = [
+  { msg: "I am Hungry", type: "info" },
+  { msg: "Emergency!", type: "Emergency" },
+  { msg: "Take Medicines", type: "info" },
+  { msg: "Don't Panic, I am Coming", type: "info" }
+];
 
-let lastEntryID=0;
-
-function getAlertMessage(feed){
-  if(feed.field7==="1") return "Web Action: Take Medicines";
-  if(feed.field8==="1") return "Web Action: Don't Panic";
-  
-  if(feed.field1) return feed.field1;
-  if(feed.field2) return feed.field2;
-  if(feed.field3) return feed.field3;
-  if(feed.field4) return feed.field4;
-  if(feed.field5) return feed.field5;
-  if(feed.field6) return feed.field6;
-  
-  return null;
-}
-
-setInterval(loadLatestAlerts,3000);
-loadLatestAlerts();
+let alertIndex = 0;
 
 function loadLatestAlerts(){
-  const url=`https://api.thingspeak.com/channels/${channelID}/feeds.json?api_key=${readAPI}&results=6`;
-  fetch(url)
-    .then(res=>res.json())
-    .then(data=>{
-      const container=document.getElementById("alertsContainer");
-      container.innerHTML="";
+  const container = document.getElementById("alertsContainer");
+  container.innerHTML = "";
 
-      let latestFeed=data.feeds[data.feeds.length-1];
-      
-      if (!latestFeed) return;
-      
-      let latestID=latestFeed.entry_id;
-      let latestMsg=getAlertMessage(latestFeed);
+  // Show last 3 alerts
+  for(let i = alertIndex; i > alertIndex - 3 && i >= 0; i--){
+    const alert = sampleAlerts[i % sampleAlerts.length];
+    const div = document.createElement("div");
 
-      if(latestID>lastEntryID && latestMsg){
-        showPopup(latestMsg);
-        lastEntryID=latestID;
-      }
+    let iconHtml;
+    if(alert.type === "emergency"){
+      div.className = "alert emergency";
+      iconHtml = '<i class="fas fa-exclamation-triangle"></i> **EMERGENCY!** ';
+    } else {
+      div.className = "alert info";
+      iconHtml = '<i class="fas fa-info-circle"></i> ';
+    }
 
-      data.feeds.reverse().forEach(feed=>{
-        let alertText=getAlertMessage(feed);
-        if(!alertText) return;
+    div.innerHTML = `
+      <div>${iconHtml} ${alert.msg}</div>
+      <div class="alert-time"><i class="fas fa-clock"></i> ${new Date().toLocaleTimeString()}</div>
+    `;
+    container.appendChild(div);
+  }
 
-        const div=document.createElement("div");
-        
-        let iconHtml;
-        if(feed.field1 && feed.field1.toLowerCase().includes("emergency")){
-            div.className="alert emergency";
-            iconHtml = '<i class="fas fa-exclamation-triangle"></i> **EMERGENCY!** ';
-        }
-        else {
-            div.className="alert info";
-            iconHtml = '<i class="fas fa-info-circle"></i> ';
-        }
-        
-        const timestamp=new Date(feed.created_at).toLocaleString();
-        
-        div.innerHTML=`
-          <div>${iconHtml} ${alertText}</div>
-          <div class="alert-time"><i class="fas fa-clock"></i> ${timestamp}</div>
-        `;
-        container.appendChild(div);
-      });
-    })
-    .catch(error => {
-        document.getElementById("alertsContainer").innerHTML = `<div class="alert emergency">Error loading data. Check network/API key.</div>`;
-        console.error('Fetch error:', error);
-    });
+  // Show popup for the latest alert
+  showPopup(sampleAlerts[alertIndex % sampleAlerts.length].msg);
+
+  alertIndex++;
 }
 
-function sendCommand(field,value){
-  const fieldMap = {
-      7: "Take Medicines",
-      8: "Don't Panic"
-  };
-  const url=`https://api.thingspeak.com/update?api_key=${writeAPI}&field${field}=${value}`;
-  fetch(url)
-    .then(res => {
-        if (res.ok) {
-            showPopup(`Command Sent: ${fieldMap[field]}`);
-        } else {
-            showPopup(`Error sending command!`);
-        }
-    })
-    .catch(() => showPopup(`Network Error: Failed to send command!`));
-}
-
+// Popup function
 function showPopup(msg){
   const popup=document.getElementById("popup");
   popup.innerHTML=`<i class="fas fa-bullhorn"></i> ${msg}`;
@@ -346,6 +281,10 @@ function showPopup(msg){
   document.getElementById("alertSound").play().catch(() => console.log('Audio playback blocked.'));
   setTimeout(()=>popup.style.display="none",4000);
 }
+
+// Start simulation
+setInterval(loadLatestAlerts, 4000);
+loadLatestAlerts();
 </script>
 
 </body>
